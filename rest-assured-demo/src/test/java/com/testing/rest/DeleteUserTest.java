@@ -1,4 +1,4 @@
-package com.endava.rest;
+package com.testing.rest;
 
 import static io.restassured.RestAssured.given;
 
@@ -9,6 +9,7 @@ public class DeleteUserTest {
 
 	@Test
 	public void deleteUser() {
+
 		given()
 				.baseUri("https://reqres.in")
 				.basePath("/api/users/{id}")
@@ -20,5 +21,4 @@ public class DeleteUserTest {
 				.log().all()
 				.statusCode(HttpStatus.SC_NO_CONTENT);
 	}
-
 }

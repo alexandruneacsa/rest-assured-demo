@@ -7,5 +7,4 @@ public class UserResponse {
 
 	private UserData data;
 	private Support support;
-
 }

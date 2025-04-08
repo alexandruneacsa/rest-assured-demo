@@ -1,4 +1,4 @@
-package com.endava.rest;
+package com.testing.rest;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
@@ -98,5 +98,4 @@ public class GetUsersTest {
 		assertTrue(jsonResponse.getList("data.first_name").contains("Janet"));
 		assertTrue(jsonResponse.getList("data.last_name").contains("Wong"));
 	}
-
 }

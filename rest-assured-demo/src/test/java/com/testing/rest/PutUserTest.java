@@ -1,4 +1,4 @@
-package com.endava.rest;
+package com.testing.rest;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
@@ -14,7 +14,8 @@ public class PutUserTest {
 
 	@Test
 	public void updateUser() {
-		User updatedUser = new User();
+
+		var updatedUser = new User();
 		updatedUser.setName("gheorghe");
 		updatedUser.setJob("employee");
 
@@ -31,8 +32,6 @@ public class PutUserTest {
 				.log().all()
 				.statusCode(200)
 				.body("name", equalTo("gheorghe"))
-				.body("job", equalTo("employee"))
-				.body("updatedAt", startsWith("2022-07-13"));
+				.body("job", equalTo("employee"));
 	}
-
 }

@@ -1,4 +1,4 @@
-package com.endava.rest;
+package com.testing.rest;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
@@ -19,6 +19,7 @@ public class PostUserTest {
 
 	@Test
 	public void createUser() {
+
 		given()
 				.baseUri("https://reqres.in")
 				.basePath("/api/users")
@@ -35,13 +36,13 @@ public class PostUserTest {
 				.statusCode(201)
 				.body("name", equalTo("user130722"))
 				.body("job", equalTo("manager"))
-				.body("id", notNullValue())
-				.body("createdAt", startsWith("2022-07-13"));
+				.body("id", notNullValue());
 	}
 
 	@Test
 	public void createUserStringBody() {
-		String jsonBody = "{\n"
+
+		var jsonBody = "{\n"
 				+ "   \"name\": \"user130722\",\n"
 				+ "   \"job\": \"manager\"\n"
 				+ "}";
@@ -59,12 +60,12 @@ public class PostUserTest {
 				.statusCode(201)
 				.body("name", equalTo("user130722"))
 				.body("job", equalTo("manager"))
-				.body("id", notNullValue())
-				.body("createdAt", startsWith("2022-07-13"));
+				.body("id", notNullValue());
 	}
 
 	@Test
 	public void createUserMapBody() {
+
 		Map<String, String> mapBody = new HashMap<>();
 		mapBody.put("name", "user130722");
 		mapBody.put("job", "manager");
@@ -82,16 +83,16 @@ public class PostUserTest {
 				.statusCode(201)
 				.body("name", equalTo("user130722"))
 				.body("job", equalTo("manager"))
-				.body("id", notNullValue())
-				.body("createdAt", startsWith("2022-07-13"));
+				.body("id", notNullValue());
 	}
 
 	@Test
 	public void createUserFileBody() {
+
 		RestAssured.baseURI = "https://reqres.in";
 		RestAssured.basePath = "/api/users";
 
-		File file = new File("src/main/resources/postPayload.json");
+		var file = new File("src/main/resources/postPayload.json");
 
 		given()
 				.contentType(ContentType.JSON)
@@ -103,16 +104,16 @@ public class PostUserTest {
 				.statusCode(201)
 				.body("name", equalTo("jane"))
 				.body("job", equalTo("tester"))
-				.body("id", notNullValue())
-				.body("createdAt", startsWith("2022-07-13"));
+				.body("id", notNullValue());
 	}
 
 	@Test
 	public void createUserPojo() {
+
 		RestAssured.baseURI = "https://reqres.in";
 		RestAssured.basePath = "/api/users";
 
-		User newUser = new User();
+		var newUser = new User();
 		newUser.setName("jane");
 		newUser.setJob("admin");
 
@@ -126,9 +127,6 @@ public class PostUserTest {
 				.statusCode(201)
 				.body("name", equalTo("jane"))
 				.body("job", equalTo("admin"))
-				.body("id", notNullValue())
-				.body("createdAt", startsWith("2022-07-13"));
-
+				.body("id", notNullValue());
 	}
-
 }

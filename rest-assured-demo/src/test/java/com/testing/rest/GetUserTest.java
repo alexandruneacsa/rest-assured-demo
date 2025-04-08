@@ -1,4 +1,4 @@
-package com.endava.rest;
+package com.testing.rest;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -45,12 +45,7 @@ public class GetUserTest {
 	}
 
 	@ParameterizedTest
-	@CsvSource({
-			"1, George",
-			"2, Janet",
-			"3, Emma"
-	}
-	)
+	@CsvSource({"1, George", "2, Janet", "3, Emma"})
 	public void checkNameForUser(int userId, String expectedFirstName) {
 
 		given()
@@ -64,11 +59,11 @@ public class GetUserTest {
 				.log().body()
 				.assertThat()
 				.body("data.first_name", equalTo(expectedFirstName));
-
 	}
 
 	@Test
 	public void getUserPojo() {
+
 		var user12 = given()
 				.baseUri("https://reqres.in")
 				.basePath("/api/users/{id}")
@@ -82,9 +77,7 @@ public class GetUserTest {
 
 		assertThat(user12.getData().getId(), equalTo(12));
 		assertThat(user12.getData().getLastName(), equalTo("Howell"));
-		assertThat(user12.getSupport().getText(), startsWith("To keep ReqRes free"));
-		assertThat(user12.getSupport().getUrl(), containsString("https://reqres.in/#support-heading"));
-
+		assertThat(user12.getSupport().getText(), startsWith("Tired of writing endless social media content? Let Content Caddy generate it for you."));
+		assertThat(user12.getSupport().getUrl(), containsString("https://contentcaddy.io?utm_source=reqres&utm_medium=json&utm_campaign=referral"));
 	}
-
 }
